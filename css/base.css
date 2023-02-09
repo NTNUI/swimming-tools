@@ -1,0 +1,117 @@
+/*Add size, margin and other non-theme spesific things in this file */
+
+
+/* GENERAL */
+
+ :root {
+    --transition-time: 0.3s;
+}
+
+* {
+    font-weight: 100;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-family: "Roboto", "Segoe UI";
+    height: 100vh;
+}
+
+footer {
+    margin: 2vh;
+}
+
+.hidden {
+    display: none !important;
+}
+
+h1,
+h2,
+h3 {
+    font-weight: 100;
+}
+
+.custom-file-label::after {
+    /* Remove browse button */
+    content: none !important;
+}
+
+.custom-file-label {
+    border-radius: .2em !important;
+}
+
+.row {
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+section {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+.button {
+    font-weight: 300;
+    border-radius: .25rem;
+    padding: .375rem .75rem;
+}
+
+.button.disabled {
+    background: transparent;
+    opacity: 50%;
+    cursor: default;
+}
+
+.button.disabled:hover {
+    background: transparent;
+    opacity: 50%;
+    cursor: default;
+}
+
+input.warning {
+    border-bottom: 1px solid var(--theme-warning) !important;
+    color: var(--theme-warning) !important;
+}
+
+
+/* NAVBAR */
+
+.navbar:not(#navbar) {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+#themeDropdown,
+#languageDropdown {
+    border: none;
+}
+
+.langList,
+.themeList {
+    box-shadow: 0px 0px 0.1rem 0.1rem rgba(0, 0, 0, 0.2)
+}
+
+
+/* TOOLS */
+
+small.note {
+    padding: 5px;
+}
+
+
+/* UNKNOWN */
+
+input[type="text"],
+input[type="number"],
+td.gender select,
+td.teamClass select,
+td.teamGender select {
+    border: none;
+    outline: none;
+    background: transparent;
+    width: auto;
+}

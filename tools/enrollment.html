@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>./victoria</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../css/base.css">
+    </link>
+    <link rel="stylesheet" type="text/css" href="../css/tools/enrollment.css">
+    </link>
+    <link rel="stylesheet" href="../css/themes/themes.css">
+    <link class="darkStyleSheet" rel="stylesheet" type="text/css" href="../css/themes/dark.css" title="dark" disabled>
+    <link class="lightStyleSheet" rel="stylesheet" type="text/css" href="../css/themes/light.css" title="light" disabled>
+
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <a class="navbar-brand" href="../">./victoria</a>
+        <div class="btn-group dropdown d-none d-md-block">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="themeDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-testid="themeButton">
+                <span class="t">Theme</span> <span class="themeText"></span>
+            </button>
+            <div class="themeList dropdown-menu" aria-labelledby="themeDropdown" data-testid="themeList"></div>
+        </div>
+        <div class="btn-group dropdown d-none d-md-block">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="languageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-testid="languageButton">
+                <span class="t">Language:</span> <span class="languageText"></span>
+            </button>
+            <div class="langList dropdown-menu" aria-labelledby="languageDropwown" data-testid="languageList"></div>
+        </div>
+    </nav>
+
+    <link rel="stylesheet" type="text/css" href="../css/tools/enrollment.css">
+    </link>
+    <section class="container">
+        <h1 class="t">Enrollment</h1>
+    </section>
+    <section class="container">
+        <h2 class="t">Meet details</h2>
+        <div class="d-none d-md-block">
+            <div class="row">
+                <label for="importFile-meetSetup" class="t col-4">Import meetsetup from XML</label>
+                <div class="col-8">
+                    <label class="custom-file-label t">Choose file</label>
+                    <input type="file" accept=".xml" class="custom-file-input" id="importFile-meetSetup" data-testid="importMeet">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="d-none d-md-block col-4" style="margin: 0; padding: 0;">
+                <label for="importMedley" class="col-auto t">Import from medley.no</label>
+            </div>
+            <select id="importMedley" class="form-control col-8" data-testid="meetSelect" autofocus></select>
+        </div>
+        <div class="d-none d-md-block">
+            <div class="row">
+                <label for="meetName" class="col-4 t">Meet name</label>
+                <input type="text" id="meetName" class="col-8" readonly data-testid="meetDisplay" />
+            </div>
+        </div>
+    </section>
+
+    <section id="clubSettings" class="container hidden">
+        <h2 class="t">Club settings</h2>
+        <div class="row">
+            <div class="col-4 d-none d-md-block">
+                <label for="clubName" class=" t">Choose club</label>
+            </div>
+            <input type="text" name="clubName" id="clubName" autocomplete="off" class="form-control col-8" data-testid="clubInput" />
+        </div>
+        <div class="d-none d-md-block">
+            <div class="row">
+                <a href="#" class="streshed-link col-auto t" id="add-new-club-link">Don't see your club in the list?</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="section-import" class="container hidden">
+        <h2 class="t">Import</h2>
+        <div class="row">
+            <label for="importFile-uni_p" class="t col-4">Import from uni_p.txt</label>
+            <div class="custom-file col-8">
+                <label class="custom-file-label t">Choose file</label>
+                <input type="file" accept="uni_p.txt" class="custom-file-input" id="importFile-uni_p">
+            </div>
+        </div>
+        <div class="row">
+            <label for="importFile-tryggivann" class="t col-4">Import enrolled from tryggivann.no</label>
+            <div class="custom-file col-8">
+                <label class="custom-file-label t">Choose file</label>
+                <input type="file" accept=".csv" class="custom-file-input" id="importFile-tryggivann">
+            </div>
+        </div>
+    </section>
+
+    <section id="participantsContainer" class="container hidden">
+        <h2 class="t">Participants</h2>
+        <div id="participantBar">
+
+            <div class="tabMenu navbar">
+                <button id="participantIndividualButton" class="t button disabled">Individuals</button>
+                <button id="participantTeamButton" class="t button disabled">Teams</button>
+            </div>
+
+            <div id="participantSingle" data-text="Individuals" data-disabled="true" class="content">
+                <h3 class="t">Individuals</h3>
+                <div>
+
+                    <table id="participantList" class="table">
+                        <tr>
+                            <th class="t">Name</th>
+                            <th class="t">Birth year</th>
+                            <th class="t">Gender</th>
+                            <th class="t d-none d-md-block">Events</th>
+                            <th class="t">Actions</th>
+                        </tr>
+                        <tr>
+                            <td colspan="5"><a class="t" href="javascript:void(0)">Add more...</a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div id="participantTeam" data-text="Teams" data-disabled="true">
+                <h3 class="t">Teams</h3>
+                <div>
+                    <table id="teamList" class="table">
+                        <tr>
+                            <th class="t">Team name</th>
+                            <th class="t">Class</th>
+                            <th class="t">Gender</th>
+                            <th class="t d-none d-md-block">Events</th>
+                            <th class="t">Actions</th>
+                        </tr>
+                        <tr>
+                            <td colspan="5"><a class="t" href="javascript:void(0)">Add more...</a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="summary" class="container hidden">
+        <h2 class="t">Summary</h2>
+        <div id="individualsSummary"></div>
+        <div class="container" id="container-download">
+            <div class="row">
+                <div class="col-2" style="width:100%"></div>
+                <button id="download" class="button t col-8">Download</button>
+                <div class="col-2" style="width:100%"></div>
+            </div>
+        </div>
+    </section>
+    <!-- Templates -->
+    <!-- Single participant -->
+    <template id="participantDummy">
+        <tr class="personRow">
+            <td class="personName"><input type="text" onchange="nameWritten(this)" /></td>
+            <td class="age"><input type="number" min="1920" max="2020" onchange="checkYear(this)" /></td>
+            <td class="gender"><select>
+                    <option value="M" class="t">Male</option>
+                    <option value="K" class="t">Female</option>
+            </td>
+            <td class="events d-none d-md-block"></td>
+            <td class="actions"><input type="button" class="delete-athlete t" value="Delete" onclick="deleteAthlete(this)" /></td>
+        </tr>
+        <tr class="edit">
+            <td colspan="5">
+                <table class="table eventTable">
+                    <tr>
+                        <th class="t">Will swim?</th>
+                        <th class="t">Event id</th>
+                        <th class="t">Event</th>
+                        <th class="t">Anticipated time</th>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </template>
+
+    <!-- Team Participant -->
+    <template id="teamDummy">
+        <tr class="teamRow">
+            <td class="teamName"><input type="text" onchange="nameWritten(this)" /></td>
+            <td class="teamClass"><select>
+                    <option value="JR" class="t">Junior</option>
+                    <option value="SR" class="t">Senior</option>
+                </select></td>
+            <td class="teamGender"><select>
+                    <option value="M" class="t">Male</option>
+                    <option value="K" class="t">Female</option>
+                    <option value="MIX" class="t">Mixed</option>
+                </select></td>
+            <td class="d-none d-md-block teamEvents"></td>
+            <td class="actions"><input type="button" class="delete-athlete t" value="Delete" onclick="deleteAthlete(this)" /></td>
+        </tr>
+        <tr class="edit">
+            <td colspan="5">
+                <table class="table eventTable">
+                    <tr>
+                        <th class="t">Will swim?</th>
+                        <th class="t">Event id</th>
+                        <th class="t">Event</th>
+                        <th class="t">Anticipated time</th>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </template>
+
+    <!-- Events editor -->
+    <template id="eventDummy">
+        <tr>
+            <td class="willSwim"><input type="checkBox" /></td>
+            <td class="eventId"></td>
+            <td class="eventName"></td>
+            <td class="eventTime">
+                <input class="min" type="text" pattern="[0-5][0-9]" />
+                <input class="sec" type="text" pattern="[0-5][0-9]" />
+                <input class="hun" type="text" pattern="[0-9][0-9]" />
+            </td>
+        </tr>
+    </template>
+
+    <div class="modal" id="confirmationBox" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title t" id="confirmationTitle">Confirmation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="confirmationBody">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger t" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-success t">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-add-club" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title t" id="confirmationTitle">Add club</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-auto t" id="modal-add-club-info">Add a new club to the list. If this club excists in medley.no then send us a message and we will add i it to the list. Please dont use abbreviations</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2"></div>
+                        <input class="form-control col-8 justify-content-center" type="text" id="modal-add-club-content">
+                        <div class="col-2"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger t" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-success t" id="modal-add-club-button-success">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="modal-import-csv">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-import-csv-title" class="t">Importing</h5>
+                </div>
+                <div class="modal-body" id="modal-import-csv-body">
+                    <p id="modal-import-csv-body-status" class="t">Importing from tryggivann</p>
+                    <div class="progress">
+                        <div id="modal-import-csv-progress" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../js/base.js"></script>
+    <script type="text/javascript" src="../js/themes.js"></script>
+    <script type="text/javascript" src="../js/translations.js"></script>
+    <script type="text/javascript" src="../js/validation.js"></script>
+    <script type="text/javascript" src="../js/enrollment.js"></script>
+    <script type="text/javascript" src="../js/encoding-indexes.js"></script>
+    <script type="text/javascript" src="../js/encoding.js"></script>
+    <script type="text/javascript" src="../js/xmlParser.js"></script>
+    <script type="text/javascript" src="../js/jquerry.autocomplete.js"></script>
+    <script type="text/javascript" src="../js/papaparse.min.js"></script>
+
+    <!-- Add some spacing between bottom of the page and the content -->
+    <footer>
+        <hr>
+        </hr>
+    </footer>
+</body>
+
+</html>
